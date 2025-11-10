@@ -1,47 +1,200 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<title>Rose</title>	
-<link rel="stylesheet" type="text/css" href="style.css">
-	</head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hello — A Rose For You</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#0b1020;
+      --bg2:#2b0a13;
+      --accent:#ff3b6b;
+      --soft:#f9d6e0;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,95,136,0.08), transparent),
+                  radial-gradient(900px 400px at 90% 90%, rgba(80,30,80,0.06), transparent),
+                  linear-gradient(135deg,var(--bg1),var(--bg2));
+      color:var(--soft);
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    /* Card */
+    .card{
+      width:min(980px,92vw);
+      max-width:980px;
+      border-radius:20px;
+      padding:36px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      box-shadow: 0 10px 40px rgba(2,4,8,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+      backdrop-filter: blur(6px) saturate(1.1);
+      position:relative;
+      overflow:visible;
+      text-align:center;
+    }
+
+    h1{
+      margin:0 0 6px 0;
+      font-family: 'Great Vibes', cursive;
+      font-size:64px;
+      line-height:1;
+      color:#ffd8e3;
+      text-shadow: 0 6px 22px rgba(255,49,120,0.16);
+    }
+    p.lead{
+      margin:0 0 18px 0;
+      font-weight:300;
+      color:rgba(255,255,255,0.85);
+      font-size:18px;
+    }
+
+    /* Roses and petals floating */
+    .rose-wrap{position:absolute;inset:12px;pointer-events:none}
+    .petal{
+      position:absolute;
+      width:36px;height:36px;
+      opacity:0.95;
+      transform-origin:center;
+      will-change:transform,opacity,top,left;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.35));
+    }
+    /* Generate a few different animations via classes */
+    @keyframes floatUp {
+      0%{transform: translateY(30vh) rotate(0deg) scale(0.9); opacity:0}
+      10%{opacity:1}
+      100%{transform: translateY(-30vh) rotate(360deg) scale(1.05); opacity:0}
+    }
+    .a{animation: floatUp 12s linear infinite;}
+    .b{animation: floatUp 9s linear infinite;}
+    .c{animation: floatUp 14s linear infinite;}
+    .d{animation: floatUp 11s linear infinite;}
+
+    /* central rose graphic */
+    .center-rose{width:220px;height:220px;margin:0 auto 12px;display:block;}
+
+    /* buttons */
+    .controls{display:flex;gap:10px;justify-content:center;margin-top:12px}
+    .btn{
+      background:transparent;border:1px solid rgba(255,255,255,0.12);color:var(--soft);
+      padding:10px 16px;border-radius:12px;cursor:pointer;font-weight:600;backdrop-filter: blur(4px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    }
+    .btn:active{transform:translateY(1px)}
+
+    footer{position:absolute;right:18px;bottom:12px;font-size:12px;color:rgba(255,255,255,0.5)}
+
+    /* responsive */
+    @media (max-width:520px){
+      h1{font-size:44px}
+      .center-rose{width:150px;height:150px}
+    }
+  </style>
+</head>
 <body>
-<div class="container">
-	<div class="glass"></div>
-	<div class="thorns">
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-	</div>
-	<div class="glow"></div>
-	<div class="rose-leaves">
-		<div></div>
-		<div></div>
-	</div>
-	<div class="rose-petals">
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-	</div>
-	<div class="sparkles">
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-	</div>
-</div>
+  <div class="card" role="main" aria-label="A rosey hello page">
+    <!-- Floating petal container -->
+    <div class="rose-wrap" aria-hidden="true">
+      <!-- We'll place identical SVG petals at different positions and animation classes -->
+      <!-- Petals are inline SVG so they blend well on all backgrounds -->
+      <!-- Petal instances -->
+      <svg class="petal a" style="left:8%; top:75%; transform:rotate(10deg)" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M32 2c10 0 20 10 20 20 0 20-20 30-20 40S12 44 12 24C12 12 22 2 32 2z" fill="#ff597f"/></svg>
+      <svg class="petal b" style="left:70%; top:90%; transform:rotate(-30deg)" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M32 2c10 0 20 10 20 20 0 20-20 30-20 40S12 44 12 24C12 12 22 2 32 2z" fill="#ff9bb0"/></svg>
+      <svg class="petal c" style="left:45%; top:85%; transform:rotate(60deg)" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M32 2c10 0 20 10 20 20 0 20-20 30-20 40S12 44 12 24C12 12 22 2 32 2z" fill="#ff4470"/></svg>
+      <svg class="petal d" style="left:30%; top:80%; transform:rotate(-10deg)" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M32 2c10 0 20 10 20 20 0 20-20 30-20 40S12 44 12 24C12 12 22 2 32 2z" fill="#ff6b94"/></svg>
+      <!-- a couple more smaller petals -->
+      <svg class="petal a" style="left:85%; top:70%; width:18px;height:18px;" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M32 2c10 0 20 10 20 20 0 20-20 30-20 40S12 44 12 24C12 12 22 2 32 2z" fill="#ff7b9c"/></svg>
+      <svg class="petal b" style="left:12%; top:88%; width:22px;height:22px;" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M32 2c10 0 20 10 20 20 0 20-20 30-20 40S12 44 12 24C12 12 22 2 32 2z" fill="#ff9db3"/></svg>
+    </div>
+
+    <!-- central content -->
+    <svg class="center-rose" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- stylized rose made from simple shapes -->
+      <defs>
+        <radialGradient id="g1" cx="30%" cy="30%">
+          <stop offset="0%" stop-color="#ffd0da" />
+          <stop offset="70%" stop-color="#ff3b6b" />
+        </radialGradient>
+      </defs>
+      <circle cx="100" cy="100" r="84" fill="url(#g1)" opacity="0.12"/>
+      <g transform="translate(20,18)">
+        <path d="M60 20 C80 10, 110 10, 120 40 C130 70, 100 90, 80 100 C60 110, 40 100, 30 80 C20 60, 40 40, 60 20 Z" fill="#ff597f"/>
+        <path d="M80 30 C95 20, 130 20, 140 60 C145 85, 120 105, 95 110 C70 115, 60 100, 50 90 C40 80, 55 50, 80 30 Z" fill="#ff2a57" opacity="0.9"/>
+        <ellipse cx="85" cy="120" rx="8" ry="22" fill="#154d2a"/>
+        <!-- stem -->
+        <rect x="92" y="110" width="6" height="60" rx="3" fill="#1b5e2f"/>
+      </g>
+    </svg>
+
+    <h1 id="title">Hello, my dear friend ✨</h1>
+    <p class="lead" id="subtitle">I made this page just for you — roses, soft music, and a little surprise.</p>
+
+    <div class="controls">
+      <button class="btn" id="playBtn">Play music ▶</button>
+      <button class="btn" id="pauseBtn" style="display:none">Pause ⏸</button>
+      <button class="btn" id="downloadBtn">Download HTML</button>
+    </div>
+
+    <audio id="music" preload="auto" loop>
+      <!-- Put a file named "music.mp3" next to this HTML file, or change the src below to the URL of your audio file. -->
+      <source src="music.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+
+    <footer>Tip: edit the text in the page to personalize it.</footer>
+  </div>
+
+  <script>
+    // Play / Pause controls
+    const music = document.getElementById('music');
+    const playBtn = document.getElementById('playBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    playBtn.addEventListener('click', async ()=>{
+      try{
+        await music.play();
+      }catch(e){
+        // some browsers require interaction; user clicked so we are fine
+      }
+      playBtn.style.display='none'; pauseBtn.style.display='inline-block';
+    });
+    pauseBtn.addEventListener('click', ()=>{
+      music.pause();
+      playBtn.style.display='inline-block'; pauseBtn.style.display='none';
+    });
+
+    // small download helper to save the current HTML as a file
+    document.getElementById('downloadBtn').addEventListener('click', ()=>{
+      const html = `<!doctype html>\n` + document.documentElement.outerHTML;
+      const blob = new Blob([html], {type: 'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'rose-hello.html';
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    // Allow quick personalization using prompt (optional)
+    // Pressing the central title will let you change the message
+    document.getElementById('title').addEventListener('click', ()=>{
+      const newT = prompt('Change the main message:', document.getElementById('title').textContent);
+      if(newT!==null) document.getElementById('title').textContent = newT;
+    });
+    document.getElementById('subtitle').addEventListener('click', ()=>{
+      const newS = prompt('Change the subtitle:', document.getElementById('subtitle').textContent);
+      if(newS!==null) document.getElementById('subtitle').textContent = newS;
+    });
+
+    // Accessibility: if user uses keyboard to focus play button, pressing Enter toggles
+    playBtn.addEventListener('keyup', (e)=>{ if(e.key==='Enter') playBtn.click() });
+
+  </script>
 </body>
 </html>
-
-
-
+s
