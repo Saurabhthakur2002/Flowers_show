@@ -1,68 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hello — A Rose For You</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pasta Date 🍝</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <style>
+      :root {
+        --bg1: #ffe5ec;
+        --bg2: #ffc2d1;
+        --accent: #ff5c8d;
+        --text: #40102a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, var(--bg1), var(--bg2));
+        overflow: hidden;
+      }
+
+      .container {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(8px);
+        padding: 40px 60px;
+        border-radius: 24px;
+        box-shadow: 0 8px 40px rgba(255, 100, 150, 0.4);
+        position: relative;
+      }
+
+      .title {
+        font-family: "Great Vibes", cursive;
+        font-size: 48px;
+        color: var(--text);
+        margin-bottom: 40px;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        position: relative;
+      }
+
+      button {
+        padding: 12px 28px;
+        border: none;
+        border-radius: 30px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      #yesBtn {
+        background: var(--accent);
+        color: white;
+        box-shadow: 0 4px 14px rgba(255, 92, 141, 0.4);
+      }
+
+      #yesBtn:hover {
+        transform: scale(1.1);
+      }
+
+      #noBtn {
+        background: #fff;
+        color: var(--accent);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+      }
+
+      #message {
+        margin-top: 40px;
+        font-size: 26px;
+        font-weight: 600;
+        color: var(--text);
+        opacity: 0;
+        transform: scale(0.8);
+        transition: all 0.5s ease;
+      }
+
+      #message.show {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .hearts {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        pointer-events: none;
+        font-size: 24px;
+        animation: float 2s ease-out forwards;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-50%, -200px) scale(1.5);
+          opacity: 0;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="sparkles" class="card" role="main" aria-label="A rosey hello page">
-      <div class="rose-wrap" aria-hidden="true">
-        <!-- petals -->
-        <svg class="petal a" style="left: 8%; top: 75%; transform: rotate(10deg)" viewBox="0 0 64 64">
-          <path d="M32 2c10 0 20 10 20 20 0 20-20 30-20 40S12 44 12 24C12 12 22 2 32 2z" fill="#ff597f" />
-        </svg>
-        <svg class="petal b" style="left: 70%; top: 90%; transform: rotate(-30deg)" viewBox="0 0 64 64">
-          <path d="M32 2c10 0 20 10 20 20 0 20-20 30-20 40S12 44 12 24C12 12 22 2 32 2z" fill="#ff9bb0" />
-        </svg>
-        <svg class="petal c" style="left: 45%; top: 85%; transform: rotate(60deg)" viewBox="0 0 64 64">
-          <path d="M32 2c10 0 20 10 20 20 0 20-20 30-20 40S12 44 12 24C12 12 22 2 32 2z" fill="#ff4470" />
-        </svg>
-        <svg class="petal d" style="left: 30%; top: 80%; transform: rotate(-10deg)" viewBox="0 0 64 64">
-          <path d="M32 2c10 0 20 10 20 20 0 20-20 30-20 40S12 44 12 24C12 12 22 2 32 2z" fill="#ff6b94" />
-        </svg>
-        <svg class="petal a" style="left: 85%; top: 70%; width: 18px; height: 18px" viewBox="0 0 64 64">
-          <path d="M32 2c10 0 20 10 20 20 0 20-20 30-20 40S12 44 12 24C12 12 22 2 32 2z" fill="#ff7b9c" />
-        </svg>
-        <svg class="petal b" style="left: 12%; top: 88%; width: 22px; height: 22px" viewBox="0 0 64 64">
-          <path d="M32 2c10 0 20 10 20 20 0 20-20 30-20 40S12 44 12 24C12 12 22 2 32 2z" fill="#ff9db3" />
-        </svg>
+    <div class="container">
+      <h1 class="title">Pasta khane chal moti? 🍝💖</h1>
+      <div class="buttons">
+        <button id="yesBtn">Yes 😍</button>
+        <button id="noBtn">No 😒</button>
       </div>
-
-      <svg class="center-rose" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <radialGradient id="g1" cx="30%" cy="30%">
-            <stop offset="0%" stop-color="#ffd0da" />
-            <stop offset="70%" stop-color="#ff3b6b" />
-          </radialGradient>
-        </defs>
-        <circle cx="100" cy="100" r="84" fill="url(#g1)" opacity="0.12" />
-        <g transform="translate(20,18)">
-          <path d="M60 20 C80 10, 110 10, 120 40 C130 70, 100 90, 80 100 C60 110, 40 100, 30 80 C20 60, 40 40, 60 20 Z" fill="#ff597f" />
-          <path d="M80 30 C95 20, 130 20, 140 60 C145 85, 120 105, 95 110 C70 115, 60 100, 50 90 C40 80, 55 50, 80 30 Z" fill="#ff2a57" opacity="0.9" />
-          <ellipse cx="85" cy="120" rx="8" ry="22" fill="#154d2a" />
-          <rect x="92" y="110" width="6" height="60" rx="3" fill="#1b5e2f" />
-        </g>
-      </svg>
-
-      <h1 id="title">Panda ✨</h1>
-
-      <div class="controls">
-        <button class="btn" id="playBtn">Play music ▶</button>
-        <button class="btn" id="pauseBtn" style="display: none">Pause ⏸</button>
-      </div>
-
-      <audio id="music" preload="auto" loop>
-        <source src="music.mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
+      <p id="message"></p>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+      const yesBtn = document.getElementById("yesBtn");
+      const noBtn = document.getElementById("noBtn");
+      const message = document.getElementById("message");
+
+      // When clicking YES ❤️
+      yesBtn.addEventListener("click", () => {
+        message.textContent = "Yay! Let's go for pink sauce pasta! 💖🍝";
+        message.classList.add("show");
+
+        // Add floating hearts for effect
+        for (let i = 0; i < 8; i++) {
+          const heart = document.createElement("div");
+          heart.textContent = "💖";
+          heart.classList.add("hearts");
+          heart.style.left = `${50 + Math.random() * 40 - 20}%`;
+          heart.style.animationDuration = `${1.5 + Math.random()}s`;
+          document.body.appendChild(heart);
+          setTimeout(() => heart.remove(), 2000);
+        }
+      });
+
+      // When hovering NO 😆
+      noBtn.addEventListener("mouseover", () => {
+        const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 100);
+        const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 100);
+        noBtn.style.position = "absolute";
+        noBtn.style.left = `${x}px`;
+        noBtn.style.top = `${y}px`;
+      });
+    </script>
   </body>
 </html>
