@@ -1,15 +1,26 @@
-// const yesBtn = document.getElementById("yesBtn");
-// const noBtn = document.getElementById("noBtn");
-// const message = document.getElementById("message");
+const music = document.getElementById("music");
+const playBtn = document.getElementById("playBtn");
+const pauseBtn = document.getElementById("pauseBtn");
 
-// yesBtn.addEventListener("click", () => {
-//   message.textContent = "Hooray! Let's go for pink sauce pasta! 💖🍝";
-//   message.classList.add("show");
-// });
+playBtn.addEventListener("click", async () => {
+  try {
+    await music.play();
+  } catch (e) {}
+  playBtn.style.display = "none";
+  pauseBtn.style.display = "inline-block";
+});
 
-// noBtn.addEventListener("mouseover", () => {
-//   const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 100);
-//   const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 100);
-//   noBtn.style.left = `${x}px`;
-//   noBtn.style.top = `${y}px`;
-// });
+pauseBtn.addEventListener("click", () => {
+  music.pause();
+  playBtn.style.display = "inline-block";
+  pauseBtn.style.display = "none";
+});
+
+document.getElementById("title").addEventListener("click", () => {
+  const newT = prompt("Change the main message:", document.getElementById("title").textContent);
+  if (newT !== null) document.getElementById("title").textContent = newT;
+});
+
+playBtn.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") playBtn.click();
+});
